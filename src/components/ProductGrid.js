@@ -13,7 +13,7 @@ const ProductGrid = ({ products, isLoading }) => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid key={product.id} item xs={12} sm={6} md={4}>
             <ProductCard product={product}></ProductCard>
           </Grid>
         ))}
