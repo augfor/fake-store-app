@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { useState } from 'react';
+// Material UI
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,7 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['Home', 'About'];
 
 const Navbar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
