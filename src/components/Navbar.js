@@ -1,21 +1,24 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 // Material UI
 import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+// Images
+import Image from '../assets/avatar.png';
 
 const pages = ['Home', 'About'];
 
-const Navbar = () => {
+const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -27,16 +30,21 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="absolute">
+    <AppBar position="fixed" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xxl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{
+              color: 'black',
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'Poppins'
+            }}
           >
-            FAKE STORE
+            fakestore
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -47,6 +55,7 @@ const Navbar = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{ color: 'black' }}
             >
               <MenuIcon />
             </IconButton>
@@ -70,7 +79,14 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                    <Link
+                      to={`${page === 'Home' ? '/' : page.toLowerCase()}`}
+                      style={{ color: 'black', textDecoration: 'none' }}
+                    >
+                      {page}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -79,18 +95,33 @@ const Navbar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+              color: 'black',
+              fontFamily: 'Poppins'
+            }}
           >
-            FAKE STORE
+            fakestore
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  my: 2,
+                  color: 'black',
+                  textTransform: 'none',
+                  display: 'block'
+                }}
               >
-                {page}
+                <Link
+                  to={`${page === 'Home' ? '/' : page.toLowerCase()}`}
+                  style={{ color: 'black', textDecoration: 'none' }}
+                >
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>
@@ -98,7 +129,9 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="About">
               <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Link to={'About'} style={{ textDecoration: 'none' }}>
+                  <Avatar alt="Remy Sharp" src={`${Image}`} />
+                </Link>
               </IconButton>
             </Tooltip>
           </Box>
@@ -108,4 +141,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;
