@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 // Material UI
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,6 +9,8 @@ import { Container } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
+// Components
+import CountdownTimer from './CountdownTimer';
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -66,27 +66,7 @@ const AllProducts = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button
-                  variant="contained"
-                  size="medium"
-                  sx={{
-                    backgroundColor: 'black',
-                    '&:hover': {
-                      backgroundColor: '#808080'
-                    },
-                    textTransform: 'none'
-                  }}
-                >
-                  <Link
-                    to={`${product.id}`}
-                    style={{
-                      color: 'white',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    Details
-                  </Link>
-                </Button>
+                <CountdownTimer id={`${product.id}`} />
               </CardActions>
             </Card>
           </Grid>
